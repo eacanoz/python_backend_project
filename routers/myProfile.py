@@ -50,10 +50,10 @@ async def login(form: OAuth2PasswordRequestForm = Depends()):
 @router.post("/sign_up")
 async def signUp(form: OAuth2PasswordRequestForm = Depends()):
     
-    if type(search_user("username", form.username)) == User:
+    if type(search_user("username", form.username)) != User:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="username already in use") 
     
-    if type(search_user("email", form.email)) == User:
+    if type(search_user("email", form.email)) != User:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="email already in use") 
 
     id = db_client.users.insert_one(form).inserted_id

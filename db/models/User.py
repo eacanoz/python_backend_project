@@ -16,5 +16,4 @@ class User_db(User):
     Basic 'User_db' class used to manage sensitive information about
     Web page users from backend.
     """
-
     password: str
